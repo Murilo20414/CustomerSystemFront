@@ -15,6 +15,7 @@ export class FormCustomerComponent implements OnInit {
 
   customer!: Customer;
   success: boolean = false;
+  
   errors!: string[];
   id!: number;
 
@@ -47,7 +48,7 @@ export class FormCustomerComponent implements OnInit {
 
       console.log('update')
       this.service
-        .update(this.customer, this.id)
+        .updateCustomer(this.customer, this.id)
         .subscribe( response => {
           this.success = true;
           this.errors = [];
@@ -61,7 +62,7 @@ export class FormCustomerComponent implements OnInit {
     } else {
 
         this.service
-        .save(this.customer)
+        .saveCustomer(this.customer)
         .subscribe( response => {
           this.success = true;
           this.errors = [];

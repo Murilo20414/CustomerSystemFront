@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component'
 import { CustomersModule } from './customers/customers.module'
 
 import { CustomerService } from './customer.service'
+import { ServiceProvidedModule } from './service-provided/service-provided.module';
+import { ServiceProvidedService } from './service-provided.service';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { CustomerService } from './customer.service'
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
-    CustomersModule
+    CustomersModule,
+    ServiceProvidedModule
   ],
   providers: [
     CustomerService,
+    ServiceProvidedService,
   ],
   bootstrap: [AppComponent]
 })

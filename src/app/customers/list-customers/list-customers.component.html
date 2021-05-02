@@ -1,9 +1,9 @@
-<h1 class="mt-4">Clientes</h1>
-<ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">Consultar clientes</li>
-</ol>
-
 <div class="container">
+  <h1 class="mt-4">Clientes</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consultar clientes</li>
+  </ol>
+
     <div class="row mb-3">
         <div class="col-md-2">
           <a routerLink='/form-customer'>
@@ -12,6 +12,16 @@
           </button>
           </a>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <div class="alert alert-success" role="alert" *ngIf="success">
+              Cliente deletado com sucesso!
+          </div>
+          <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+              {{error}}
+          </div>
+      </div>
     </div>
 
     <div class="row">
@@ -24,6 +34,7 @@
               <th>CPF</th>
               <th>Data de Cadastro</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -32,11 +43,27 @@
               <td>{{ customer.name }}</td>
               <td>{{ customer.cpf }} </td>
               <td>{{customer.registrationDate }}</td>
-              <td><a routerLink='/form-customer/{{customer.id}}'><i class="fa fa-edit"></i></a></td>
+              <td><button class="btn btn-primary" routerLink='/form-customer/{{customer.id}}'><i class="fa fa-edit"></i></button></td>
+              <td><button class="btn btn-danger" (click)="updateCustomerSelected(customer)" data-toggle="modal" data-target="#modalDelecao"><i class="fas fa-trash-alt"></i></button></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-
+    <div id="modalDelecao" class="modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Deletar cliente</h4>
+          </div>
+          <div class="modal-body" *ngIf="customerSelected">
+            Tem certeza que deseja excluir o cliente{{ customerSelected.name }}?
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" data-dismiss="modal" (click)="onDelete()">Confirmar</button>
+            <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
